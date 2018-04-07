@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+use App\Attachment;
 use Illuminate\Database\Eloquent\Model;
 
 class Reply extends Model
@@ -72,6 +73,16 @@ class Reply extends Model
     public function thread()
     {
         return $this->belongsTo(Thread::class);
+    }
+
+    /**
+     * A reply has many attachments.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphyMany
+     */
+    public function attachments()
+    {
+        return $this->morphMany(Attachment::class, 'attachable');
     }
 
     /**

@@ -1,11 +1,7 @@
 <template>
-    <div>
-      <button class="bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-4 border border-blue hover:border-transparent rounded">
-        <input class="hover:bg-blue hover:text-white" type="file" name="file" accept="image/*" @change="onChange"/>
-        Upload Avatar
-      </button>
-
-    </div>
+    <label class="text-blue text-xs">
+        <input type="file" name="file" @change="onChange"/>
+    </label>
 </template>
 
 <script>
@@ -33,6 +29,6 @@
 <style scoped>
   input {
     position: absolute;
-    opacity: 0;
+    border: none;
   }
 </style>

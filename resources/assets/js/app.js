@@ -18,6 +18,9 @@ Vue.component(
     "user-notifications",
     require("./components/UserNotifications.vue")
 );
+Vue.component("reply-upload-form", require("./components/ReplyUploadForm.vue"));
+Vue.component("thread-upload-form", require("./components/ThreadUploadForm.vue"));
+Vue.component("thread-attachments", require("./components/ThreadAttachments.vue"));
 Vue.component("avatar-form", require("./components/AvatarForm.vue"));
 Vue.component("activities", require("./components/Activities"));
 Vue.component("activity-layout", require("./components/ActivityLayout"));
@@ -25,6 +28,7 @@ Vue.component("activity-favorite", require("./components/ActivityFavorite"));
 Vue.component("activity-reply", require("./components/ActivityReply"));
 Vue.component("activity-thread", require("./components/ActivityThread"));
 Vue.component("wysiwyg", require("./components/Wysiwyg.vue"));
+Vue.component("recaptcha", require("./components/Recaptcha.vue"));
 Vue.component("dropdown", require("./components/Dropdown.vue"));
 Vue.component("channel-dropdown", require("./components/ChannelDropdown.vue"));
 Vue.component("logout-button", require("./components/LogoutButton"));

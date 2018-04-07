@@ -39,7 +39,7 @@
              alt="{{ $thread->creator->username }}"
              width="36"
              height="36"
-             class="mr-1 bg-blue-darker rounded-full p-2">
+             class="mr-1 bg-blue-darker rounded-full p-1">
 
         <div class="flex-1 border-b border-grey-lighter pb-8 ml-4">
             <h1 class="text-blue mb-2 text-2xl font-normal -mt-1" v-text="title"></h1>
@@ -63,7 +63,9 @@
                 </span>
             </p>
 
-            <highlight :content="body"></highlight>
+            <thread-attachments :thread="{{ $thread }}"></thread-attachments>
+
+            <highlight :content="body" class="pt-4"></highlight>
         </div>
     </div>
 </div>

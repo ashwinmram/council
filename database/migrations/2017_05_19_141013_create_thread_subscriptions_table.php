@@ -14,6 +14,7 @@ class CreateThreadSubscriptionsTable extends Migration
     public function up()
     {
         Schema::create('thread_subscriptions', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('thread_id');

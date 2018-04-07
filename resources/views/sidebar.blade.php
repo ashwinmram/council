@@ -31,7 +31,7 @@
                     >
                         <img src="{{ auth()->user()->avatar_path }}"
                              alt="{{ auth()->user()->username }}"
-                             class="w-4 h-4 mr-3 bg-grey text-grey-darkest rounded-full p-1">
+                             class="w-4 h-4 mr-3 bg-grey text-grey-darkest rounded-full bg-black">
 
                         My Threads
                     </a>

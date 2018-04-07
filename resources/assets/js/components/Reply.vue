@@ -6,7 +6,7 @@
                      :alt="reply.owner.name"
                      width="36"
                      height="36"
-                     class="mr-4 bg-blue-darker rounded-full p-2">
+                     class="mr-4 bg-blue-darker rounded-full p-1">
 
                 <div v-if="signedIn" class="text-xs pl-2" style="padding-top: 15px">
                     <favorite :reply="reply"></favorite>
@@ -58,7 +58,25 @@
                     </div>
 
                     <div v-else>
-                        <highlight :content="body"></highlight>
+                        <div class="bg-green-lightest border-l-4 border-green text-green-dark p-4">
+                            <p class="text-blue font-bold underline text-xs">Attachments:</p>
+
+                            <ul v-if="attachments" v-for="attachment in attachments" key="attachment.id">
+                                <div class="flex items-center">
+                                    <a :href="attachment.path" class="flex text-blue text-xs link">{{ attachment.name }}</a>
+
+                                    <span class="flex">
+                                        <svg class="fill-current h-4 w-4 text-red" role="button" @click="deleteAttachment(attachment)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                                    </span>
+                                </div>
+                            </ul>
+
+                            <reply-upload-form class="pt-4" :reply="reply"></reply-upload-form>
+                        </div>
+
+
+
+                        <highlight :content="body" class="pb-4 pt-4"></highlight>
                     </div>
                 </div>
             </div>
@@ -81,7 +99,8 @@ export default {
             editing: false,
             id: this.reply.id,
             body: this.reply.body,
-            isBest: this.reply.isBest
+            isBest: this.reply.isBest,
+            attachments: ''
         };
     },
 
@@ -105,6 +124,8 @@ export default {
         window.events.$on("best-reply-selected", id => {
             this.isBest = id === this.id;
         });
+
+        this.attachments = this.reply.attachments
     },
 
     methods: {
@@ -142,7 +163,17 @@ export default {
             axios.post("/replies/" + this.id + "/best");
 
             window.events.$emit("best-reply-selected", this.id);
+        },
+
+        deleteAttachment(attachment) {
+            let index = this.attachments.indexOf(attachment);
+            this.attachments.splice(index, 1);
+            axios.delete("/api/attachment/" + attachment.id);
         }
     }
 };
 </script>
+
+<style scoped>
+
+</style>

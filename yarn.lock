@@ -4432,9 +4432,9 @@ laravel-mix-tailwind@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/laravel-mix-tailwind/-/laravel-mix-tailwind-0.1.0.tgz#5dee3cb7a85aef6354912982a31ba387997e3289"
 
-laravel-mix@^2.1.10:
-  version "2.1.10"
-  resolved "https://registry.yarnpkg.com/laravel-mix/-/laravel-mix-2.1.10.tgz#7d32419d448c926d61a8bb86e845f5ec472ffb2c"
+laravel-mix@^2.1.11:
+  version "2.1.11"
+  resolved "https://registry.yarnpkg.com/laravel-mix/-/laravel-mix-2.1.11.tgz#3741bde214586f8c171641990c9a487eece5367d"
   dependencies:
     autoprefixer "^7.2.6"
     babel-core "^6.24.1"

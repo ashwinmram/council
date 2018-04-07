@@ -1,11 +1,11 @@
 <template>
     <div>
-        <div class="level">
-            <img :src="avatar" width="50" height="50" class="mr-1">
+        <div class="level flex items-center mb-4">
+            <img :src="avatar" width="50" height="50" class="mr-1 rounded-full mt-4">
 
             <h1>
-                {{ user.username }}
-                <small v-text="reputation"></small>
+                <span class="inline mb-4 text-xl text-blue">{{ user.username }}</span>
+                <small class="inline px-2 text-lg bg-green rounded font-semibold text-white" v-text="reputation"></small>
             </h1>
         </div>
 

@@ -1,11 +1,11 @@
 <nav class="bg-blue-darker py-4">
     <div class="container mx-auto flex justify-between items-center text-blue-lightest pl-6">
         <div>
-            <h1 class="font-normal text-2xl">
-                <a href="/" class="text-blue-lightest flex items-center">
-                    @include ('svgs.logo', ['class' => 'mr-2'])
-                    {{ config('app.name', 'Council') }}
-                </a>
+            <h1 class="font-normal text-2xl flex items-center">
+                    <img src="/images/sabre.png" width="20%" height="20%">
+                    <a href="/" class="pl-2 text-blue-lightest flex items-center">
+                        {{ config('app.name', 'Council') }}
+                    </a>
             </h1>
         </div>
 
@@ -33,7 +33,7 @@
                         >
                             <img src="{{ auth()->user()->avatar_path }}"
                                  alt="{{ auth()->user()->username }}"
-                                 class="relative z-10 w-4 rounded-full">
+                                 class="relative z-10 w-8 rounded-full">
                         </div>
 
                         <template slot="links">

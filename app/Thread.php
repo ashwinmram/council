@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Attachment;
 use Laravel\Scout\Searchable;
 use App\Filters\ThreadFilters;
 use App\Events\ThreadWasPublished;
@@ -25,7 +26,7 @@ class Thread extends Model
      *
      * @var array
      */
-    protected $with = ['creator', 'channel'];
+    protected $with = ['creator', 'channel' ,'attachments'];
 
     /**
      * The accessors to append to the model's array form.
@@ -98,6 +99,11 @@ class Thread extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function attachments()
+    {
+        return $this->morphMany(Attachment::class, 'attachable');
+    }
+
     /**
      * Get the title for the thread.
      */
@@ -123,7 +129,7 @@ class Thread extends Model
      */
     public function replies()
     {
-        return $this->hasMany(Reply::class);
+        return $this->hasMany(Reply::class)->with('attachments');
     }
 
     /**

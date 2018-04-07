@@ -14,6 +14,7 @@ class CreateThreadsTable extends Migration
     public function up()
     {
         Schema::create('threads', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('slug')->unique()->nullable();
             $table->unsignedInteger('user_id');
