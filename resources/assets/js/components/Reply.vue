@@ -2,7 +2,7 @@
     <div :id="'reply-'+id" class="border-b border-grey-lighter py-8" :class="isBest ? 'panel-success': 'panel-default'">
         <div class="flex">
             <div>
-                <img src="/images/avatars/default.svg"
+                <img :src="reply.owner.avatar_path"
                      :alt="reply.owner.name"
                      width="36"
                      height="36"
