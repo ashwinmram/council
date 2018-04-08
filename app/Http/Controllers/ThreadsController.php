@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Thread;
 use App\Channel;
 use App\Trending;
 use App\Rules\Recaptcha;
 use App\Filters\ThreadFilters;
 use Illuminate\Validation\Rule;
+use App\Notifications\ThreadPublished;
+use Illuminate\Support\Facades\Notification;
 
 class ThreadsController extends Controller
 {
@@ -80,6 +83,8 @@ class ThreadsController extends Controller
             'body' => request('body')
         ]);
 
+        Notification::send(User::all(), new ThreadPublished($thread));
+
         if (request()->wantsJson()) {
             return response($thread, 201);
         }
@@ -123,6 +128,8 @@ class ThreadsController extends Controller
             'title' => 'required',
             'body' => 'required'
         ]));
+
+        Notification::send(User::all(), new ThreadPublished($thread));
 
         return $thread;
     }

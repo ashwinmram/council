@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Reply;
 use App\Thread;
+use App\Notifications\ReplyPublished;
 use App\Http\Requests\CreatePostRequest;
+use Illuminate\Support\Facades\Notification;
 
 class RepliesController extends Controller
 {
@@ -57,6 +60,8 @@ class RepliesController extends Controller
         $this->authorize('update', $reply);
 
         $reply->update(request()->validate(['body' => 'required|spamfree']));
+
+        Notification::send(User::all(), new ReplyPublished($reply));
     }
 
     /**

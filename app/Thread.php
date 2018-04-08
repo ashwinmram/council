@@ -2,13 +2,16 @@
 
 namespace App;
 
+use App\User;
 use App\Attachment;
 use Laravel\Scout\Searchable;
 use App\Filters\ThreadFilters;
 use App\Events\ThreadWasPublished;
+use App\Notifications\ReplyPublished;
 use App\Events\ThreadReceivedNewReply;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Notification;
 
 class Thread extends Model
 {
@@ -151,6 +154,8 @@ class Thread extends Model
     public function addReply($reply)
     {
         $reply = $this->replies()->create($reply);
+
+        Notification::send(User::all(), new ReplyPublished($reply));
 
         event(new ThreadReceivedNewReply($reply));
 
